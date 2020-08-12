@@ -1,26 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {Component} from 'react';
+import Modal from './Components/Modal/Modal'
+import Backdrop from './Components/Backdrop/Backdrop'
+import Table from './Components/Table/Table';
+class App extends Component{
+  state={
+    showModal: false,
+  }
+  showModalHandler = ()=>{
+    this.setState({showModal:!this.state.showModal})
+  }
+  render(){
 
-function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      { this.state.showModal ?
+        <Modal 
+        show={this.state.showModal}
+        clicked={this.showModalHandler}/> : null}
+
+      { this.state.showModal ?
+        <Backdrop 
+        clicked={this.showModalHandler}/> : null}
+
+        <Table clicked={this.showModalHandler}/>
     </div>
   );
 }
-
+}
 export default App;
